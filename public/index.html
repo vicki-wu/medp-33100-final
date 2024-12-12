@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Memory Keeper</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;600&family=Playfair+Display:wght@700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="background-gradient"></div>
+
+    <!-- Navigation -->
+    <nav class="main-nav">
+      <div class="nav-links">
+        <a href="#" data-page="home" class="active">Home</a>
+        <a href="#" data-page="create">Create Memory</a>
+        <a href="#" data-page="gallery">Memory Gallery</a>
+        <a href="#" data-page="timeline">Memory Timeline</a>
+      </div>
+    </nav>
+
+    <!-- Pages Container -->
+    <div id="pages">
+      <!-- Home/Introduction Page -->
+      <div id="home-page" class="page active">
+        <header>
+          <div class="header-content">
+            <i class="fas fa-book-open"></i>
+            <h1>Memory Keeper</h1>
+            <p>Capture the stories that paint your life's canvas</p>
+          </div>
+        </header>
+
+        <main class="introduction">
+          <section class="intro-cards">
+            <div class="intro-card">
+              <i class="fas fa-pen-nib"></i>
+              <h3>Document Your Journey</h3>
+              <p>
+                Preserve your most cherished moments with rich, detailed
+                memories.
+              </p>
+            </div>
+            <div class="intro-card">
+              <i class="fas fa-archive"></i>
+              <h3>Organized Memories</h3>
+              <p>Tag, search, and filter your memories with ease.</p>
+            </div>
+            <div class="intro-card">
+              <i class="fas fa-globe"></i>
+              <h3>Global Storytelling</h3>
+              <p>Connect your memories across time and space.</p>
+            </div>
+          </section>
+
+          <section class="cta-section">
+            <h2>Start Your Memory Journey</h2>
+            <p>Every moment tells a story. Begin documenting yours today.</p>
+            <button id="start-creating" class="cta-button">
+              <i class="fas fa-book"></i> Begin Storytelling
+            </button>
+          </section>
+        </main>
+      </div>
+
+      <!-- Create Memory Page -->
+      <div id="create-page" class="page">
+        <header>
+          <div class="header-content">
+            <h1>Create Your Memory</h1>
+            <p>Fill in the details of a moment you want to preserve</p>
+          </div>
+        </header>
+
+        <main>
+          <section id="memory-form" class="card floating-card">
+            <form id="create-memory-form">
+              <div class="form-grid">
+                <input
+                  type="text"
+                  id="title"
+                  placeholder="Memory Title"
+                  required
+                />
+                <input
+                  type="text"
+                  id="author"
+                  placeholder="Your Name (optional)"
+                />
+                <input type="date" id="date" required />
+                <input
+                  type="text"
+                  id="location"
+                  placeholder="Location (optional)"
+                />
+              </div>
+              <textarea
+                id="description"
+                placeholder="Describe your memory..."
+                required
+              ></textarea>
+              <div class="form-grid">
+                <input
+                  type="text"
+                  id="mediaUrl"
+                  placeholder="Media URL (optional)"
+                />
+                <input
+                  type="text"
+                  id="tags"
+                  placeholder="Tags (comma-separated)"
+                />
+              </div>
+              <button type="submit">
+                <i class="fas fa-save"></i> Save Memory
+              </button>
+            </form>
+          </section>
+        </main>
+      </div>
+
+      <!-- Gallery Page -->
+      <div id="gallery-page" class="page">
+        <header>
+          <div class="header-content">
+            <h1>Memory Gallery</h1>
+            <p>Browse through your captured moments</p>
+          </div>
+        </header>
+
+        <main>
+          <section id="memory-search" class="card search-section">
+            <div class="search-container">
+              <i class="fas fa-search"></i>
+              <input
+                type="text"
+                id="search"
+                placeholder="Search your memories..."
+              />
+            </div>
+            <select id="sort-select">
+              <option value="newest">Newest Memories</option>
+              <option value="oldest">Oldest Memories</option>
+            </select>
+          </section>
+
+          <section id="memories-container" class="masonry-grid">
+            <!-- Memories will be dynamically added here -->
+          </section>
+        </main>
+      </div>
+
+      <!-- Timeline Page -->
+      <div id="timeline-page" class="page">
+        <header>
+          <div class="header-content">
+            <h1>Memory Timeline</h1>
+            <p>Your life's journey visualized</p>
+          </div>
+        </header>
+
+        <main>
+          <section id="memory-timeline" class="timeline-container">
+            <!-- Timeline will be dynamically generated -->
+          </section>
+        </main>
+      </div>
+    </div>
+
+    <!-- Edit Memory Modal -->
+    <div id="edit-memory-modal" class="modal">
+      <div class="modal-content">
+        <span class="close" onclick="closeEditModal()">&times;</span>
+        <h2>Edit Memory</h2>
+        <form id="edit-memory-form">
+          <div class="form-grid">
+            <input
+              type="text"
+              id="edit-title"
+              placeholder="Memory Title"
+              required
+            />
+            <input
+              type="text"
+              id="edit-author"
+              placeholder="Your Name (optional)"
+            />
+            <input type="date" id="edit-date" required />
+            <input
+              type="text"
+              id="edit-location"
+              placeholder="Location (optional)"
+            />
+          </div>
+          <textarea
+            id="edit-description"
+            placeholder="Describe your memory..."
+            required
+          ></textarea>
+          <div class="form-grid">
+            <input
+              type="text"
+              id="edit-mediaUrl"
+              placeholder="Media URL (optional)"
+            />
+            <input
+              type="text"
+              id="edit-tags"
+              placeholder="Tags (comma-separated)"
+            />
+          </div>
+          <button type="submit" onclick="updateMemory(event)">
+            <i class="fas fa-save"></i> Update Memory
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <script src="app.js"></script>
+  </body>
+</html>
