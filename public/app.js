@@ -107,12 +107,14 @@ function displayMemories(memoriesToDisplay = memories) {
 
     const date = new Date(memory.date).toLocaleDateString();
 
+    // Enhanced image display with validation
+    const mediaHtml =
+      memory.mediaUrl && isValidImageUrl(memory.mediaUrl)
+        ? `<img src="${memory.mediaUrl}" alt="${memory.title}" onerror="this.style.display='none'">`
+        : "";
+
     memoryCard.innerHTML = `
-      ${
-        memory.mediaUrl
-          ? `<img src="${memory.mediaUrl}" alt="${memory.title}">`
-          : ""
-      }
+      ${mediaHtml}
       <h3>${memory.title}</h3>
       <p><small>By ${memory.author} on ${date}</small></p>
       <p>${memory.description}</p>
@@ -133,6 +135,14 @@ function displayMemories(memoriesToDisplay = memories) {
 // Create memory
 async function createMemory(event) {
   event.preventDefault();
+
+  const mediaUrl = document.getElementById("mediaUrl").value;
+  const isValidMedia = await validateMediaUrl(mediaUrl);
+
+  if (mediaUrl && !isValidMedia) {
+    alert("Invalid image URL. Please provide a valid image link.");
+    return;
+  }
 
   const formData = {
     title: document.getElementById("title").value,
@@ -335,3 +345,18 @@ document
   .getElementById("edit-memory-form")
   .addEventListener("submit", updateMemory);
 document.addEventListener("DOMContentLoaded", fetchMemories);
+
+function isValidImageUrl(url) {
+  return /\.(jpg|jpeg|png|gif|webp)$/i.test(url);
+}
+
+function validateMediaUrl(url) {
+  if (!url) return true; // Optional field
+
+  return new Promise((resolve) => {
+    const img = new Image();
+    img.onload = () => resolve(true);
+    img.onerror = () => resolve(false);
+    img.src = url;
+  });
+}
