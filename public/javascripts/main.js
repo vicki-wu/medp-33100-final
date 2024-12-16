@@ -35,7 +35,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 
-  // Store the original form submission handler for new entries
+  // New Entry Submission
   const handleNewEntrySubmission = async (e) => {
     e.preventDefault();
 
@@ -72,7 +72,6 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   };
 
-  // Remove the event listener setup and use onsubmit directly
   diaryForm.onsubmit = handleNewEntrySubmission;
 
   // When clicking "New Entry", reset the form and set it back to create mode
