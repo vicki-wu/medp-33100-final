@@ -1,15 +1,20 @@
-const mongoose = require("mongoose");
+const { MongoClient } = require("mongodb");
+const uri =
+  "mongodb+srv://vicki:1234@memorykeeper.eve4x.mongodb.net/?retryWrites=true&w=majority&appName=memorykeeper";
 
-const connectDB = async () => {
+const client = new MongoClient(uri, {
+  autoSelectFamily: false, // required for node version over v18
+});
+
+async function connectToDatabase() {
+  console.log("Connecting to MongoDB...");
   try {
-    const conn = await mongoose.connect(
-      "mongodb+srv://vicki:1234@memorykeeper.eve4x.mongodb.net/?retryWrites=true&w=majority&appName=memorykeeper"
-    );
-    console.log(`MongoDB Connected: ${conn.connection.host}`);
-  } catch (error) {
-    console.error(`Error: ${error.message}`);
-    process.exit(1);
+    await client.connect();
+    console.log("Connected to MongoDB!");
+    return client.db("blog");
+  } catch (err) {
+    console.error("Failed to connect to MongoDB", err);
   }
-};
+}
 
-module.exports = connectDB;
+module.exports = connectToDatabase;

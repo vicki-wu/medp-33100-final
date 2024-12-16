@@ -1,0 +1,122 @@
+{{! views/index.hbs }}
+<div class="diary-container">
+  <div class="sidebar">
+    <div class="diary-logo">
+      <i class="fas fa-book-open"></i>
+      <h1>My Personal Diary</h1>
+    </div>
+    <button id="newEntryBtn" class="new-entry-btn">
+      <i class="fas fa-plus"></i>
+      New Entry
+    </button>
+    <div class="diary-stats">
+      <p><i class="fas fa-book"></i>
+        <span id="entryCount">{{memories.length}}</span>
+        entries</p>
+      <p><i class="fas fa-calendar-alt"></i>
+        <span id="dateRange">{{dateRange}}</span></p>
+    </div>
+  </div>
+
+  <main class="diary-main">
+    <!-- Entry Form Modal -->
+    <div id="entryModal" class="modal">
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2>New Diary Entry</h2>
+        <form id="diaryForm">
+          <div class="form-group">
+            <label>How are you feeling today?</label>
+            <div class="mood-selector">
+              <input type="radio" name="mood" value="happy" id="happy" />
+              <label for="happy">😊</label>
+              <input type="radio" name="mood" value="sad" id="sad" />
+              <label for="sad">😢</label>
+              <input type="radio" name="mood" value="excited" id="excited" />
+              <label for="excited">🎉</label>
+              <input type="radio" name="mood" value="tired" id="tired" />
+              <label for="tired">😴</label>
+            </div>
+          </div>
+          <div class="form-group">
+            <label><i class="fas fa-calendar"></i> Date</label>
+            <input type="date" id="date" required />
+          </div>
+          <div class="form-group">
+            <label><i class="fas fa-heading"></i> Title</label>
+            <input
+              type="text"
+              id="title"
+              placeholder="Give your entry a title..."
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label><i class="fas fa-pen"></i> Dear Diary...</label>
+            <textarea
+              id="description"
+              placeholder="Write about your day..."
+              required
+            ></textarea>
+          </div>
+          <div class="form-group">
+            <label><i class="fas fa-camera"></i> Add Photos</label>
+            <input type="url" id="mediaUrl" placeholder="Add photo URL" />
+            <div id="imagePreview"></div>
+          </div>
+          <button type="submit" class="save-entry-btn">
+            <i class="fas fa-save"></i>
+            Save Entry
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Diary Entries Display -->
+    <div class="diary-filters">
+      <input
+        type="text"
+        id="searchInput"
+        placeholder="🔍 Search your diary..."
+      />
+      <select id="moodFilter">
+        <option value="">All Moods</option>
+        <option value="happy">Happy 😊</option>
+        <option value="sad">Sad 😢</option>
+        <option value="excited">Excited 🎉</option>
+        <option value="tired">Tired 😴</option>
+      </select>
+      <select id="sortSelect">
+        <option value="newest">Newest First</option>
+        <option value="oldest">Oldest First</option>
+      </select>
+    </div>
+
+    <div id="entriesList" class="diary-entries">
+      {{#each memories}}
+        <div class="diary-entry" data-id="{{this._id}}">
+          <div class="entry-header">
+            <span class="entry-mood">{{this.mood}}</span>
+            <span class="entry-date"><i class="fas fa-clock"></i>
+              {{this.date}}</span>
+          </div>
+          {{#if this.mediaUrl}}
+            <div class="entry-image">
+              <img src="{{this.mediaUrl}}" alt="Entry Image" />
+            </div>
+          {{/if}}
+          <h3 class="entry-title">{{this.title}}</h3>
+          <div class="entry-content">
+            <p>{{this.description}}</p>
+          </div>
+
+          <div class="entry-actions">
+            <button class="edit-btn"><i class="fas fa-edit"></i> Edit</button>
+            <button class="delete-btn"><i class="fas fa-trash"></i>
+              Delete</button>
+          </div>
+        </div>
+      {{/each}}
+    </div>
+  </main>
+</div>
