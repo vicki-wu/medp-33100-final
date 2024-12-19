@@ -1,8 +1,8 @@
-# MEDP 33100 Final Project
+# My Personal Diary
 
 ## **Project Overview**
 
-Memory Keeper is a web application designed to help users document, organize, and explore their personal memories.
+My Personal Diary is a web application designed to help users document, organize, and explore their personal thoughts, memories, and emotions. Users can create diary entries, view past entries, and filter them based on mood and date.
 
 ## **Project Members**
 
@@ -10,20 +10,19 @@ Vicki Wu
 
 ## **Features**
 
-1. **Memory Creation**:
+1. **Diary Entry Creation**:
 
-   - Create and save memories with details
-   - Add title, description, date, location, and media
-   - Tag memories for better organization
+   - Create and save diary entries with details
+   - Add title, description, date, and mood
+   - Select mood using emojis for better emotional tracking
 
-2. **Memory Gallery**:
+2. **Diary Entry Gallery**:
 
-   - Browse memories
-   - Search and filter memories by date
+   - Browse previous entries
+   - Search and filter entries by mood and date
 
-3. **Memory Timeline**:
-   - Visualize memories chronologically
-   - Animated reveal of timeline items
+3. **Responsive Design**:
+   - Mobile-friendly interface for easy access on any device
 
 ## **Technologies Used**
 
@@ -49,14 +48,14 @@ Vicki Wu
 
 ## **Live Demo**
 
-- Include a link to the live version of the project hosted on Glitch.
+- Include a link to the live version of the project hosted on Glitch or any other platform.
 
 ## **Credits**
 
 ### Assets
 
 - Font Awesome Icons
-- Google Fonts (Quicksand, Playfair Display)
+- Google Fonts (Poppins)
 
 ### Tutorials and Resources
 
@@ -66,5 +65,7 @@ Vicki Wu
 
 ## **Future Enhancements**
 
-- Add ability to share memories
+- Add ability to automatically update on save rather than having to refresh the page
+- Add ability to share diary entries
 - Implement more advanced search and filter options
+- Allow users to upload images with their entries

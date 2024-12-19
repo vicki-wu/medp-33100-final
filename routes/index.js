@@ -28,9 +28,7 @@ router.post("/memories", async function (req, res, next) {
       title: req.body.title,
       date: req.body.date,
       description: req.body.description,
-      mediaUrl: req.body.mediaUrl,
       mood: req.body.mood,
-      tags: req.body.tags || [],
       createdAt: new Date(),
     };
 
