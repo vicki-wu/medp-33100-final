@@ -21,7 +21,7 @@
  
 ## **Live Demo**
 
-- Include a link to the live version of the project hosted on Glitch.
+- [Include a link to the live version of the project hosted on Glitch.](https://traveling-fast-parsnip.glitch.me/)
 
 ## **Credits**
 
